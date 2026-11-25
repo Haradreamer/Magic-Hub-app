@@ -1,0 +1,50 @@
+name: Publish Magic Hub 1.0.0 signed APK (one-time transfer)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-magic-hub-v1.yml'
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch signed release artifact (public APK and verification files only)
+        env:
+          ARTIFACT_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-bef0-81f4-bd75-adece74ee583/raw?se=2026-11-25T13%3A34%3A04Z&sp=r&sv=2026-06-06&sr=b&scid=95cc65bb-1db1-58ba-b1b5-62c6a65917ed&skoid=ba81670d-b682-4d2d-9682-ac0ffdfb3fa1&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-25T09%3A57%3A58Z&ske=2026-11-26T09%3A57%3A58Z&sks=b&skv=2026-06-06&sig=XC8PKYu4wcOxMu35riBuzfpWLBoHbrIRmhnPgiw/xfM%3D"
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --max-time 90 "$ARTIFACT_URL" -o signed-release.zip
+          mkdir -p dist
+          unzip -q signed-release.zip -d dist
+          test -s dist/Magic-Hub-1.0.0-release.apk
+          test -s dist/Magic-Hub-1.0.0-certificate.pem
+          echo "bf16112bd06fe11ef4e3664c140f158927b8468735009f8dc8b6f531a1a85993  dist/Magic-Hub-1.0.0-release.apk" | sha256sum -c -
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          test -s dist/APK-SIGNATURE-VERIFICATION.txt
+          test -s dist/APK-VERSION.txt
+          echo "Verified signed APK and full release package"
+      - name: Publish v1.0.0 public GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            echo "Release v1.0.0 already exists; refusing overwrite"
+            exit 1
+          fi
+          gh release create v1.0.0 \
+            dist/Magic-Hub-1.0.0-release.apk \
+            dist/Magic-Hub-1.0.0-certificate.pem \
+            dist/SHA256SUMS.txt \
+            dist/APK-VERSION.txt \
+            dist/APK-SIGNATURE-VERIFICATION.txt \
+            --title "Magic Hub 1.0.0 — First Stable Release" \
+            --notes-file RELEASE_NOTES_1.0.0.md \
+            --target "$GITHUB_SHA" \
+            --latest
