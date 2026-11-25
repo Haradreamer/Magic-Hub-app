@@ -1,36 +1,49 @@
-# Magic Hub for HONOR MagicOS
+# 🟠 Magic Hub
 
-[English](README.md) | [Русский](README.ru.md)
+**Haradreamer Tools · Android · No root**
 
-**Magic Hub** brings configurable Google gestures to supported HONOR MagicOS smartphones.
+[🇬🇧 English](README.md) · [🇷🇺 Русский](README.ru.md) · [📥 Download](../../releases/latest)
 
-- **Google / Discover:** open Google by swiping from the left edge of the home screen.
-- **Google Lens:** configurable quick launch zone.
-- **Circle to Search:** screen search through compatible Google voice-interaction services.
-- **Custom gestures:** configure size, position, swipe distance and hold duration separately.
-- **Keyboard-friendly mode:** hide each Edge / Lens / Circle zone independently while the on-screen keyboard is visible.
-- **Optional Shizuku support:** HONOR YOYO controls, with manual confirmation and permissions.
-- **Nine language modes:** Russian, English, Chinese, Spanish, Brazilian Portuguese, Arabic, Turkish, Indonesian and system language.
-- **Light and dark themes.**
+**Magic Hub** brings Google Edge, Circle to Search and Google Lens to Chinese HONOR MagicOS devices without replacing the stock launcher.
 
-## Download
+## ✨ Features
 
-Get the **official digitally signed APK** in [Releases](../../releases/latest). Install and follow the app's built-in setup guide.
+- **Google Edge:** open the Google panel by swiping from the left edge of the main home screen.
+- **Circle to Search:** search screen content by pressing and holding the bottom edge.
+- **Google Lens:** launch Lens instead of the native HONOR QR scanner.
+- Three independently configurable gesture zones: size, position, swipe distance and hold duration.
+- Independent keyboard conflict protection for each zone.
+- Russian, English, Simplified Chinese, Spanish, Brazilian Portuguese, Arabic, Turkish, Indonesian and system language; light and dark themes.
 
-**Android requirement:** Android 10 or later. Features depend on HONOR model, MagicOS version, installed Google apps, system permissions, and region. Compatibility is not guaranteed for every HONOR device. Shizuku is only needed for optional advanced YOYO controls.
+## 📥 Download & installation
 
-> If you have a debug/test APK installed, the different release certificate may require uninstalling it first. Back up app settings before uninstalling.
+**[Magic Hub 1.0.0 — official signed APK](../../releases/latest)**
 
-## Privacy and source code
+1. Uninstall MiCTS and Vivid if previously installed.
+2. Download and install the APK, open Magic Hub and follow its built-in setup instructions.
+3. Install any required companion apps listed inside Magic Hub and grant the necessary permissions.
+4. Enable the desired features and adjust gesture zones and keyboard protection.
 
-This repository is **public distribution only**: release APKs, certificates, integrity hashes, user instructions and documentation. Development sources and the private signing key are kept in a separate private repository. R8 obfuscation is not full APK encryption.
+If a debug build uses a different signing certificate, Android may require uninstalling it before installation. Back up settings first.
 
-The APK is signed; check its certificate and SHA-256 against the files attached to each release. Only download the app from the official GitHub Releases page.
+## 📱 Compatibility
 
-## Contact
+Android 10+ is the stated minimum requirement; designed primarily for Chinese HONOR MagicOS firmware. Primary test device: HONOR Magic9 Pro Max (WKL-AN20), MagicOS 11, Android 17. Other models and firmware require testing. Compatible Google services and permissions are required for relevant features. No root or launcher replacement is required.
 
-Created by **Haradreamer**, an independent developer. Not affiliated with HONOR or Google.
+## 🔐 Security & distribution
 
-- [Telegram](https://t.me/isle_universal)
-- [Support on Boosty](https://boosty.to/haradreamer)
-- [Report a bug](../../issues/new)
+The APK is signed and R8-obfuscated; certificate and SHA-256 are attached to the release. Obfuscation is not encryption. This repository distributes official binaries and documentation; development source and private signing keys are kept separately. Report model, region, MagicOS/Android version and affected feature when reporting bugs.
+
+## 🌐 Other Haradreamer Tools projects
+
+- 🔵 [Isle](https://github.com/Haradreamer/Isle-HONOR-app) — Magic Capsule & AOD
+- 🟢 [MagicOS CN Tool](https://github.com/Haradreamer/Honor-Tools-CN) — HONOR configuration
+- 🟣 [AutoFace](https://github.com/Haradreamer/Honor-AutoFace) — Face confirmation
+
+## 💬 Community & support
+
+[Telegram](https://t.me/isle_universal) · [4PDA](https://4pda.to/forum/index.php?showtopic=1119615&view=findpost&p=145819882) · [Report a bug](../../issues) · [Boosty](https://boosty.to/haradreamer)
+
+Free independent project. Support is voluntary. Not affiliated with HONOR, HUAWEI or Google.
+
+**Haradreamer**
