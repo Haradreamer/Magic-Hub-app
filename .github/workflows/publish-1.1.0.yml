@@ -1,0 +1,34 @@
+name: Publish verified Magic Hub 1.1.0
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-1.1.0.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve approved signed artifact
+        env:
+          ARTIFACT_URL: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-591c-8210-9759-8c497afaba48/raw?se=2026-11-26T05%3A48%3A38Z&sp=r&sv=2026-06-06&sr=b&scid=1a42d48c-ce90-5079-9018-2bc7f512cd67&skoid=ba81670d-b682-4d2d-9682-ac0ffdfb3fa1&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-26T05%3A41%3A50Z&ske=2026-11-27T05%3A41%3A50Z&sks=b&skv=2026-06-06&sig=vHGPotEEXakBWehQHabl5tGvr%2Bg9HwdQ8RWFSrXBnTY%3D'
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$ARTIFACT_URL" -o approved.zip
+          echo '57ac8ca9f23cbd3ef60483c8e342f0803efc0c3d76fe48053d7d1cca46dba655  approved.zip' | sha256sum -c -
+          mkdir dist
+          unzip -q approved.zip -d dist
+          cd dist
+          sha256sum -c SHA256SUMS.txt
+          test -f Magic-Hub-1.1.0-release.apk
+      - name: Publish approved APK and bilingual release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view v1.1.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'Release already exists; refusing overwrite'
+            exit 1
+          fi
+          gh release create v1.1.0 dist/Magic-Hub-1.1.0-release.apk dist/Magic-Hub-1.1.0-certificate.pem dist/SHA256SUMS.txt dist/APK-VERSION.txt dist/APK-SIGNATURE-VERIFICATION.txt --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title 'Magic Hub 1.1.0' --notes-file RELEASE_NOTES_1.1.0.md --latest

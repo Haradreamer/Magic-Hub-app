@@ -1,13 +1,15 @@
-# Install Magic Hub 1.0.0
+# Install Magic Hub 1.1.0
 
-1. Download `Magic-Hub-1.0.0-release.apk` from [GitHub Releases](../../releases/latest).
+1. Download `Magic-Hub-1.1.0-release.apk` from [GitHub Releases](../../releases/latest).
 2. If prompted, allow APK installation from your browser/file manager, then install the application.
 3. Open Magic Hub and choose your language on first launch.
 4. Visit **Google services** and install/verify the required Google app and Lens support.
 5. Visit **Permissions** and follow the built-in HONOR Accessibility, app launch and battery instructions.
-6. Under **Gestures & zones**, configure Edge, Lens and Circle as desired.
+6. Under **Gestures & zones**, configure Edge, Lens, Circle and the custom app zone as desired.
 7. Leave **Avoid keyboard conflicts** enabled for any gesture zone that interferes with the on-screen keyboard.
 8. Shizuku is optional. It is used only when you explicitly choose advanced YOYO configuration.
+
+9. Optionally assign action shortcuts in HONOR AI button settings and configure vibration intensity/duration on the Magic Hub home page.
 
 **Upgrade note:** Release-signed APKs may not install over earlier debug-signed builds. Uninstalling a debug build may erase its settings.
 

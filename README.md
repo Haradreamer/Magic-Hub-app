@@ -11,13 +11,16 @@
 - **Google Edge:** open the Google panel by swiping from the left edge of the main home screen.
 - **Circle to Search:** search screen content by pressing and holding the bottom edge.
 - **Google Lens:** launch Lens instead of the native HONOR QR scanner.
-- Three independently configurable gesture zones: size, position, swipe distance and hold duration.
+- Four independently configurable gesture zones, including a custom app button: width, height, horizontal/vertical position, swipe distance and hold duration (from 100 ms).
+- HONOR physical AI button support via action shortcuts, subject to firmware compatibility.
+- Adjustable haptic feedback: intensity and duration, with vibration preview.
+- Live zone preview and overlap prevention.
 - Independent keyboard conflict protection for each zone.
 - Russian, English, Simplified Chinese, Spanish, Brazilian Portuguese, Arabic, Turkish, Indonesian and system language; light and dark themes.
 
 ## 📥 Download & installation
 
-**[Magic Hub 1.0.0 — official signed APK](../../releases/latest)**
+**[Magic Hub 1.1.0 — official signed APK](../../releases/latest)**
 
 1. Uninstall MiCTS and Vivid if previously installed.
 2. Download and install the APK, open Magic Hub and follow its built-in setup instructions.
