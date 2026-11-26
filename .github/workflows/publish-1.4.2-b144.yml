@@ -1,0 +1,33 @@
+name: Update Magic Hub 1.4.2 to signed B144
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-1.4.2-b144.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify signed B144 archive
+        env:
+          ARTIFACT_URL: 'https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-c3d4-820a-b77c-b267c848c0c6/raw?se=2026-11-26T15%3A55%3A20Z&sp=r&sv=2026-06-06&sr=b&scid=9f76aacc-6dd1-5ceb-b39f-4cdc38b25b81&skoid=b5d2651b-fef3-4bb0-a03b-ca59cc22929b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-26T02%3A16%3A52Z&ske=2026-11-27T02%3A16%3A52Z&sks=b&skv=2026-06-06&sig=93eAjGclJrdvSEeXBvfP5T8cV8hEr9oiHRLP6REis8c%3D'
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$ARTIFACT_URL" -o approved.zip
+          echo '427c7ad60b7b69ce7cfc0c199648be76403820e529c877674da19c1aa314a388  approved.zip' | sha256sum -c -
+          mkdir dist
+          unzip -q approved.zip -d dist
+          cd dist
+          sha256sum -c SHA256SUMS.txt
+          test -f Magic-Hub-1.4.2-release.apk
+          grep -a "versionCode='144'" APK-VERSION.txt || (iconv -f UTF-16LE -t UTF-8 APK-VERSION.txt | grep "versionCode='144'")
+      - name: Replace assets and update release description
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release view v1.4.2 --repo "$GITHUB_REPOSITORY"
+          gh release upload v1.4.2 dist/Magic-Hub-1.4.2-release.apk dist/Magic-Hub-1.4.2-certificate.pem dist/SHA256SUMS.txt dist/APK-VERSION.txt dist/APK-SIGNATURE-VERIFICATION.txt --clobber --repo "$GITHUB_REPOSITORY"
+          gh release edit v1.4.2 --repo "$GITHUB_REPOSITORY" --title 'Magic Hub 1.4.2 — Build 144' --notes-file RELEASE_NOTES_1.4.2.md --prerelease=false --latest

@@ -1,33 +1,48 @@
-# Magic Hub 1.4.2 — Public Beta
+# Magic Hub 1.4.2 — Build 144
 
 ## 🇷🇺 Русский
 
-Новая версия Magic Hub для открытого тестирования.
+Обновление Magic Hub для смартфонов HONOR: точная настройка зон и улучшенная обработка жестов.
 
-- Отдельный редактор автоматических макросов.
-- Упрощённая система создания и выполнения макросов.
-- Исправлен выбор условий автоматического запуска.
-- Исправлена логика восстановления исходного состояния сценариев.
-- Улучшена обработка конфликтов между сценариями и макросами.
-- Улучшена диагностика выполнения действий.
+### Что нового
+- Ручной числовой ввод размеров и положения четырёх активных зон.
+- Чувствительность ползунков уменьшена в четыре раза.
+- Улучшена обработка касаний и свайпов.
+- Программная повторная отправка нераспознанных одноточечных жестов нижележащим приложениям.
+- Сохранена защита от конфликтов с экранной клавиатурой.
 
-**⚠️ Важно! Раздел «Макросы» находится в активной разработке и является экспериментальным.** Возможны ошибки, нестабильная работа и некорректное выполнение отдельных действий. Используйте макросы с осторожностью и не применяйте их для критически важных задач.
+### Magic Routines
+Раздел «Режимы и макросы» временно исключён из релиза. Автоматизация требует переработки архитектуры и дальнейшего тестирования; разработка продолжится отдельно.
 
-При обнаружении ошибок указывайте модель смартфона, регион и версию MagicOS. Исправление восстановления состояния требует проверки на реальных устройствах.
+### Основные возможности
+Google Edge, Circle to Search, Google Lens, пользовательская зона запуска приложений, физическая AI-кнопка HONOR, четыре независимо настраиваемые зоны, виброотклик, многоязычный интерфейс, светлая и тёмная темы. Без root и замены штатного лаунчера.
+
+Повторная отправка жестов не является нативной сквозной передачей касаний; работа на всех экранах и мультитач не гарантированы.
+
+---
 
 ## 🇬🇧 English
 
-A new Magic Hub version for public beta testing.
+Magic Hub update for HONOR smartphones, focused on precise gesture zone configuration and improved touch handling.
 
-- Dedicated automatic macro editor.
-- Simplified macro creation and execution.
-- Fixed automatic trigger selection.
-- Fixed scenario state restoration logic.
-- Improved conflict handling between scenarios and macros.
-- Improved action execution diagnostics.
+### What's new
+- Manual numeric input for the dimensions and positions of all four gesture zones.
+- Slider sensitivity reduced by a factor of four.
+- Improved tap and swipe handling.
+- Synthetic replay of unrecognized single-finger gestures to underlying applications.
+- Retained keyboard conflict protection.
 
-**⚠️ Important! The Macros section is under active development and remains experimental.** Bugs, unexpected behavior and incorrect execution of certain actions may occur. Use macros with caution and avoid relying on them for critical tasks.
+### Magic Routines
+Modes & Routines has been temporarily removed from this release. Automation requires architectural improvements and further testing; development will continue separately.
 
-When reporting bugs, please include your device model, region and MagicOS version. State restoration fixes still require real-device testing.
+### Main features
+Google Edge, Circle to Search, Google Lens, custom application launch zone, HONOR physical AI button support, four independently configurable gesture zones, customizable haptics, multilingual interface, light and dark themes. No root or launcher replacement required.
 
-**Version:** 1.4.2 • **Build:** 142 • **Android:** 10+ • **Signed release APK**
+Synthetic gesture replay is not native touch passthrough; compatibility with all screens and multitouch is not guaranteed.
+
+---
+
+**Version:** 1.4.2 • **Build:** 144 • **Android:** 10+ • **Signed release APK**
+
+💬 [Telegram](https://t.me/isle_universal)  
+❤️ [Support development](https://boosty.to/haradreamer)
