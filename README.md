@@ -9,6 +9,7 @@
 ## ✨ Features
 
 - **Google Edge:** open the Google panel by swiping from the left edge of the main home screen.
+- **Transparent Edge widget:** open Edge by visiting a separate home screen page, with delays adapting to system animation speed.
 - **Circle to Search:** search screen content by pressing and holding the bottom edge.
 - **Google Lens:** launch Lens instead of the native HONOR QR scanner.
 - Four independently configurable gesture zones, including a custom app button: width, height, horizontal/vertical position, swipe distance and hold duration (from 100 ms).
@@ -20,7 +21,7 @@
 
 ## 📥 Download & installation
 
-**[Magic Hub 1.1.0 — official signed APK](../../releases/latest)**
+**[Magic Hub 1.4.5 — official signed APK](../../releases/latest)**
 
 1. Uninstall MiCTS and Vivid if previously installed.
 2. Download and install the APK, open Magic Hub and follow its built-in setup instructions.

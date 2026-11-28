@@ -1,0 +1,37 @@
+name: Publish approved Magic Hub 1.4.5 B159
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-1.4.5-b159.yml']
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify approved signed archive
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location "$ARTIFACT_URL" -o approved.zip
+          echo '434c265090dd7b0cd0ed8d8c67c0c13d9b0e0efe5a7b8f9066828f81447740c8  approved.zip' | sha256sum -c -
+          mkdir dist
+          unzip -q approved.zip -d dist
+          cd dist
+          sha256sum -c SHA256SUMS.txt
+          test -f Magic-Hub-1.4.5-release.apk
+          grep -a "versionCode='159'" APK-VERSION.txt || (iconv -f UTF-16LE -t UTF-8 APK-VERSION.txt | grep "versionCode='159'")
+          grep -a "versionName='1.4.5'" APK-VERSION.txt || (iconv -f UTF-16LE -t UTF-8 APK-VERSION.txt | grep "versionName='1.4.5'")
+          test -f Magic-Hub-1.4.5-certificate.pem
+          gh release download v1.4.2 --repo "$GITHUB_REPOSITORY" --pattern Magic-Hub-1.4.2-certificate.pem --dir ../previous
+          test "$(openssl x509 -in Magic-Hub-1.4.5-certificate.pem -noout -fingerprint -sha256)" = "$(openssl x509 -in ../previous/Magic-Hub-1.4.2-certificate.pem -noout -fingerprint -sha256)"
+        env:
+          ARTIFACT_URL: 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-ec5c-8246-bcf7-8db844fa24d5/raw?se=2026-11-28T08%3A53%3A55Z&sp=r&sv=2026-06-06&sr=b&scid=85ef0738-c34e-5d3e-9eb3-cdb171744ea2&skoid=b5d2651b-fef3-4bb0-a03b-ca59cc22929b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-28T08%3A46%3A45Z&ske=2026-11-29T08%3A46%3A45Z&sks=b&skv=2026-06-06&sig=RxnKK2lwzvgPpbpmzinw4C89H1LA5t0zoqOTSirtJ4A%3D'
+          GH_TOKEN: ${{ github.token }}
+      - name: Publish exact approved APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create v1.4.5 dist/Magic-Hub-1.4.5-release.apk dist/Magic-Hub-1.4.5-certificate.pem dist/SHA256SUMS.txt dist/APK-VERSION.txt dist/APK-SIGNATURE-VERIFICATION.txt --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title 'Magic Hub 1.4.5 — Build 159' --notes-file RELEASE_NOTES_1.4.5.md --draft
+          gh release edit v1.4.5 --repo "$GITHUB_REPOSITORY" --draft=false --prerelease=false --latest
